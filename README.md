@@ -229,6 +229,45 @@ sudo systemctl enable kubelet
 ```
 sudo kubeadm config images pull --cri-socket unix:///run/cri-dockerd.sock
 ```
+
+- Option 1: Create cluster WITHOUT DNS endpoint
+```
+sudo sysctl -p
+```
+```
+sudo kubeadm init \
+  --pod-network-cidr=172.24.0.0/16 \
+  --cri-socket unix:///run/cri-dockerd.sock
+```
+
+- Option 2: Create cluster WITH DNS endpoint
+```
+sudo vi /etc/hosts
+```
+```
+172.29.20.5 yourDomain.com
+```
+```
+sudo sysctl -p
+```
+```
+sudo kubeadm init \
+  --pod-network-cidr=172.24.0.0/16 \
+  --upload-certs \
+  --control-plane-endpoint=yourDomain.com
+```
+
+
+
+```
+
+```
+```
+
+```
+```
+
+```
 ```
 
 ```
