@@ -15,12 +15,78 @@
 
 
 
-## Step 1: Update
+### Step 1: Update
 
 - Upgrade all packages to latest and reboot
 ```
 sudo apt update && sudo apt -y full-upgrade [ -f /var/run/reboot-required ] && sudo reboot -f
 ```
+
+### Step 1: Update
+
+- Upgrade all packages to latest and reboot
+```
+sudo apt update && sudo apt -y full-upgrade [ -f /var/run/reboot-required ] && sudo reboot -f
+```
+
+### Step 1: Update
+
+- Upgrade all packages to latest and reboot
+```
+sudo apt update && sudo apt -y full-upgrade [ -f /var/run/reboot-required ] && sudo reboot -f
+```
+
+### Step 1: Update
+
+- Upgrade all packages to latest and reboot
+```
+sudo apt update && sudo apt -y full-upgrade [ -f /var/run/reboot-required ] && sudo reboot -f
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Step 2: Install kind (local kubernetes) via binary
 
