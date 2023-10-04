@@ -1,4 +1,19 @@
-# k8s-ubuntu-installation
+# Kubernetes Cluster Installation
+
+## ARCHITECTURE
+
+
+## MASTER NODE / CONTROL PLANE
+
+
+
+
+
+
+## WORKER NODE
+
+
+
 
 ## Step 1: Update
 
