@@ -7,34 +7,77 @@
 sudo apt update && sudo apt -y full-upgrade [ -f /var/run/reboot-required ] && sudo reboot -f
 ```
 
-## Step 2: Install kubelet, kubeadm, kubectl
+## Step 2: Install kind (local kubernetes) via binary
 
-- Add Kubernetes repository
+- Option 1: For AMD64 / x86_64
 ```
-sudo apt -y install curl apt-transport-https
-```
-```
-curl  -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes.gpg
-```
-```
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
 ```
 
-- Install vim, git, curl, wget, kubelet, kubeadm, kubectl
+- Option 2: For ARM64
 ```
-sudo apt update
-```
-```
-sudo apt -y install vim git curl wget kubelet kubeadm kubectl
-```
-```
-sudo apt-mark hold kubelet kubeadm kubectl
+[ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-arm64
 ```
 
-- Check version of kubectl to confirm installation
+- Set executable for kind binary
 ```
-kubectl version --client && kubeadm version
+chmod +x ./kind
 ```
+
+- Move kind binary to /usr/local/bin
+```
+sudo mv ./kind /usr/local/bin/kind
+```
+
+- Validate installation
+```
+kind --version
+```
+
+## Step 3: Install docker
+- Validate installation
+```
+sudo apt-get remove docker docker-engine docker.io
+```
+
+- Validate installation
+```
+kind --version
+```
+
+- Validate installation
+```
+kind --version
+```
+
+- Validate installation
+```
+kind --version
+```
+
+- Validate installation
+```
+kind --version
+```
+
+## Step 3: Create kubernetes cluster
+
+- Create 1 cluster
+```
+kind create cluster
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Step 3: Disable swap
 

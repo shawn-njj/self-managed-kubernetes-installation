@@ -1,0 +1,304 @@
+<mxfile host="Electron" modified="2023-10-04T07:27:35.949Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="32e3Vg2-Iw_Bl-yRqwMc" version="22.0.2" type="device">
+  <diagram name="Page-1" id="2U9mXMDFkQdWKMgx4MdH">
+    <mxGraphModel dx="1234" dy="1214" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=3;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="46" width="1151.5" height="1552" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-32" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="275" y="270" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-31" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="804" y="270" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-30" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="667" y="141" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="117" width="1036" height="284" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-2" value="KUBERNETES CLUSTER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="568.5" y="21" width="196" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-4" value="MASTER NODE / CONTROL PLANE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="554.5" y="87" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-5" value="WORKER NODE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="251" y="436" width="113" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-12" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="466" width="305" height="1083" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-15" value="&lt;u&gt;CLOUD CONTROLLER MANAGER&lt;/u&gt;&lt;br&gt;(optional)&lt;br&gt;&lt;br&gt;Connector between Cloud API and Kubernetes API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="827" y="286" width="196" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-28" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="539.5" y="270" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-11" value="&lt;u&gt;CONTROLLER MANAGER&lt;/u&gt;&lt;br&gt;&lt;br&gt;Infinite loops constantly making changes when needed to fulfil desired state (manifest.yaml)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="697" y="151.5" width="180" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-7" value="&lt;u&gt;API SERVER&lt;/u&gt;&lt;br&gt;&lt;br&gt;Receive instructions from external via HTTP REST API calls" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="422.5" y="155" width="187" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-10" value="&lt;u&gt;ETCD&lt;/u&gt;&lt;br&gt;&lt;br&gt;Non-relational (key-value) database storing configuration data&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="557" y="288" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-9" value="&lt;u&gt;SCHEDULER&lt;/u&gt;&lt;br&gt;&lt;br&gt;Put POD(s) into WORKER NODE(s)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="300.5" y="288" width="198.5" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-29" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="396" y="141" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-18" value="&lt;u&gt;CONTAINER RUNTIME&lt;/u&gt;&lt;br&gt;&lt;br&gt;Software required to run container images (docker / containerd / CRI-O / Mirantis)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="732" width="242" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-36" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="486" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-37" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="603" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-38" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="720" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-51" value="&lt;u&gt;KUBE PROXY&lt;/u&gt;&lt;br&gt;&lt;br&gt;Expose each POD&#39;s private IP and port" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="614" width="215" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-53" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="1352" width="100.5" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-56" value="POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="206.5" y="1322" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-70" value="&lt;u&gt;KUBELET&lt;/u&gt;&lt;br&gt;&lt;br&gt;System daemon for communications between WORKER NODE and API SERVER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="208" y="499" width="201" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-83" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="216.75" y="1459" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-84" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="207.75" y="1431" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-89" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="215.5" y="1384" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-90" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="206.5" y="1356" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-93" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="314.5" y="1354" width="100.5" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-94" value="POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="333.5" y="1324" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-95" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="343.75" y="1461" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-96" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="334.75" y="1433" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-97" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="342.5" y="1386" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-98" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="333.5" y="1358" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-125" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="838" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-126" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="958" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-127" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="182.5" y="1077" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-128" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="182.5" y="1195" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-138" value="&lt;u&gt;COREDNS&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;DNS server to route FQDN domain to POD&#39;s private IP" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="203" y="857" width="212" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-143" value="&lt;u&gt;CNI PLUGIN&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Third-party networking solution for POD&lt;br&gt;(eg. Calico, Flannel, Cilium, AWS CNI, Azure CNI)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="203" y="962" width="213" height="87" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-145" value="&lt;u&gt;METRICS SERVER&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Collects performance data of WORKER NODE and POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="205" y="1085.5" width="195" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-147" value="&lt;u&gt;WEB UI&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Provides a management dashboard for kubernetes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="203" y="1208.5" width="196.75" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-148" value="WORKER NODE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="982" y="436" width="113" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-149" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="886" y="466" width="305" height="1083" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-150" value="&lt;u&gt;CONTAINER RUNTIME&lt;/u&gt;&lt;br&gt;&lt;br&gt;Software required to run container images (docker / containerd / CRI-O / Mirantis)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="732" width="242" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-151" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="486" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-152" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="603" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-153" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="720" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-154" value="&lt;u&gt;KUBE PROXY&lt;/u&gt;&lt;br&gt;&lt;br&gt;Expose each POD&#39;s private IP and port" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="931" y="614" width="215" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-155" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="1352" width="100.5" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-156" value="POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="937.5" y="1322" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-157" value="&lt;u&gt;KUBELET&lt;/u&gt;&lt;br&gt;&lt;br&gt;System daemon for communications between WORKER NODE and API SERVER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="939" y="499" width="201" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-158" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="947.75" y="1459" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-159" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="938.75" y="1431" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-160" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="946.5" y="1384" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-161" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="937.5" y="1356" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-162" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1045.5" y="1354" width="100.5" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-163" value="POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1064.5" y="1324" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-164" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1074.75" y="1461" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-165" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1065.75" y="1433" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-166" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1073.5" y="1386" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-167" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1064.5" y="1358" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-168" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="838" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-169" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="918.5" y="958" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-170" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="913.5" y="1077" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-171" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="913.5" y="1195" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-172" value="&lt;u&gt;COREDNS&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;DNS server to route FQDN domain to POD&#39;s private IP" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="934" y="857" width="212" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-173" value="&lt;u&gt;CNI PLUGIN&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Third-party networking solution for POD&lt;br&gt;(eg. Calico, Flannel, Cilium, AWS CNI, Azure CNI)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="934" y="962" width="213" height="87" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-174" value="&lt;u&gt;METRICS SERVER&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Collects performance data of WORKER NODE and POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="936" y="1085.5" width="195" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-175" value="&lt;u&gt;WEB UI&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Provides a management dashboard for kubernetes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="934" y="1208.5" width="196.75" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-176" value="WORKER NODE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="616.5" y="436" width="113" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-177" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="520.5" y="466" width="305" height="1083" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-178" value="&lt;u&gt;CONTAINER RUNTIME&lt;/u&gt;&lt;br&gt;&lt;br&gt;Software required to run container images (docker / containerd / CRI-O / Mirantis)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="553" y="732" width="242" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-179" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="553" y="486" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-180" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="553" y="603" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-181" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="553" y="720" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-182" value="&lt;u&gt;KUBE PROXY&lt;/u&gt;&lt;br&gt;&lt;br&gt;Expose each POD&#39;s private IP and port" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="565.5" y="614" width="215" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-183" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="553" y="1352" width="100.5" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-184" value="POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="572" y="1322" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-185" value="&lt;u&gt;KUBELET&lt;/u&gt;&lt;br&gt;&lt;br&gt;System daemon for communications between WORKER NODE and API SERVER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="573.5" y="499" width="201" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-186" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="582.25" y="1459" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-187" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="573.25" y="1431" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-188" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="581" y="1384" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-189" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="572" y="1356" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-190" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1354" width="100.5" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-191" value="POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="699" y="1324" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-192" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="709.25" y="1461" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-193" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700.25" y="1433" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-194" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="708" y="1386" width="47" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-195" value="CONTAINER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="699" y="1358" width="62.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-196" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="553" y="838" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-197" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="553" y="958" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-198" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="548" y="1077" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-199" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="548" y="1195" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-200" value="&lt;u&gt;COREDNS&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;DNS server to route FQDN domain to POD&#39;s private IP" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="568.5" y="857" width="212" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-201" value="&lt;u&gt;CNI PLUGIN&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Third-party networking solution for POD&lt;br&gt;(eg. Calico, Flannel, Cilium, AWS CNI, Azure CNI)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="568.5" y="962" width="213" height="87" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-202" value="&lt;u&gt;METRICS SERVER&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Collects performance data of WORKER NODE and POD" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570.5" y="1085.5" width="195" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="VsSTc1LzKZpiPV4-nfJD-203" value="&lt;u&gt;WEB UI&lt;/u&gt;&lt;br&gt;(add-on)&lt;br&gt;&lt;br&gt;Provides a management dashboard for kubernetes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="568.5" y="1208.5" width="196.75" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
