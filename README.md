@@ -1,7 +1,7 @@
 # Kubernetes Cluster Installation
 
 ## ARCHITECTURE
-
+![alt text](https://github.com/shawn-njj/k8s-cluster-installation/blob/main/kube.drawio.png?raw=true)
 
 ## MASTER NODE / CONTROL PLANE
 
