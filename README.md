@@ -7,7 +7,7 @@
 - Minimum two Ubuntu nodes [One master and one worker node]. You can have more worker nodes as per your requirement.
 - The master node should have a minimum of 2 vCPU and 2GB RAM.
 - For the worker nodes, a minimum of 1vCPU and 2 GB RAM is recommended.
-- 10.X.X.X/X network range with static IPs for master and worker nodes. We will be using the 192.x.x.x series as the pod network range that will be used by the Calico network plugin. Make sure the Node IP range and pod IP range don’t overlap.
+- 10.X.X.X/X network range with static IPs for master and worker nodes. We will be using the 192.x.x.x series as the pod network range that will be used by the Calico network plugin. Make sure the Node IP range and pod IP range DO NOT overlap.
 
 
 ## MASTER NODE / CONTROL PLANE
