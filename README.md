@@ -60,7 +60,7 @@ OS="xUbuntu_22.04"
 VERSION="1.28"
 ```
 
-- Create file (crio.conf under /etc/modules-load.d/) & write configuration (overlay and br_netfilter modules)
+- Create file (crio.conf under /etc/modules-load.d/) & write configuration (enable overlay and br_netfilter modules)
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
