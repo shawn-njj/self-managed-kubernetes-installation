@@ -33,21 +33,25 @@ sudo reboot
 
 ### Step 2: Enable iptables bridged traffic (persists after reboot)
 
-- Write config into /etc/modules-load.d/k8s.conf
+- Write configuration into file (/etc/modules-load.d/k8s.conf)
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
 EOF
 ```
+
+- Add module (overlay) into kernel
 ```
 sudo modprobe overlay
 ```
+
+- Add module (br_netfilter) into kernel
 ```
 sudo modprobe br_netfilter
 ```
 
-- Set sysctl parameters in k8s.conf file (persists after reboot)
+- Write configuration into file (/etc/sysctl.d/k8s.conf)
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -56,7 +60,7 @@ net.ipv4.ip_forward                 = 1
 EOF
 ```
 
-- Reload sysctl
+- Apply sysctl parameters without reboot
 ```
 sudo sysctl --system
 ```
@@ -68,18 +72,20 @@ sudo sysctl --system
 sudo swapoff -a
 ```
 
-- Turn off swap using crontab daemon (persists after reboot)
+- Turn off swap using crontab daemon
 ```
 (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
 ```
 
 
-### Step 2: [Option 1] Install container runtime (CRI-O)
+### Step 4: [Option 1] Install container runtime (CRI-O)
 
-- Set environment variable (reference as $VariableName later) for OS and Kubernetes version
+- Set environment variable (reference as $VariableName later) for OS
 ```
 OS="xUbuntu_22.04"
 ```
+
+- Set environment variable (reference as $VariableName later) for Kubernetes version
 ```
 VERSION="1.28"
 ```
@@ -149,16 +155,16 @@ sudo systemctl enable crio --now
 ```
 
 
-### Step 2: [Option 2] Install container runtime (containerd)
+### Step 4: [Option 2] Install container runtime (containerd)
 - XXX
 
 
-### Step 2: [Option 3] Install container runtime (cri-dockerd)
+### Step 4: [Option 3] Install container runtime (cri-dockerd)
 - XXX
 
 
 
-### Step 3: Install kubeadm and kubelet and kubectl
+### Step 5: Install kubeadm and kubelet and kubectl
 
 - Install required dependencies and download signing key
 ```
