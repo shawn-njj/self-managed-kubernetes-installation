@@ -9,7 +9,10 @@
 - For the worker nodes, a minimum of 1vCPU and 2 GB RAM is recommended.
 - 10.X.X.X/X network range with static IPs for master and worker nodes. We will be using the 192.x.x.x series as the pod network range that will be used by the Calico network plugin. Make sure the Node IP range and pod IP range DO NOT overlap.
 
-LINKS = https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+### LINKS
+https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+https://github.com/techiescamp/kubeadm-scripts
+
 
 ## MASTER NODE / CONTROL PLANE
 Ensure that inbound TCP ports (6443, 2379-2380, 10250-10252) are open
