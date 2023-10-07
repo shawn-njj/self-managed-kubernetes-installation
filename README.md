@@ -9,24 +9,31 @@
 - For the worker nodes, a minimum of 1vCPU and 2 GB RAM is recommended.
 - 10.X.X.X/X network range with static IPs for master and worker nodes. We will be using the 192.x.x.x series as the pod network range that will be used by the Calico network plugin. Make sure the Node IP range and pod IP range DO NOT overlap.
 
+LINKS = https://devopscube.com/setup-kubernetes-cluster-kubeadm/
 
 ## MASTER NODE / CONTROL PLANE
 Ensure that inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
-### Step 1: Pre-requisites
+### Step 1: Update
 
-- Update packages
+- Pull packages
 ```
 sudo apt-get update -y
 ```
+
+- Update packages
 ```
 sudo apt-get upgrade -y
 ```
+
+- Restart
 ```
 sudo reboot
 ```
 
-- Enable iptables bridged traffic (persists after reboot)
+### Step 2: Enable iptables bridged traffic (persists after reboot)
+
+- Write config into /etc/modules-load.d/k8s.conf
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -39,6 +46,8 @@ sudo modprobe overlay
 ```
 sudo modprobe br_netfilter
 ```
+
+- Set sysctl parameters in k8s.conf file (persists after reboot)
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -46,14 +55,20 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
 ```
+
+- Reload sysctl
 ```
 sudo sysctl --system
 ```
 
-- Disable swap (persists after reboot)
+### Step 3: Disable swap (persists after reboot)
+
+- Turn off swap
 ```
 sudo swapoff -a
 ```
+
+- Turn off swap using crontab daemon (persists after reboot)
 ```
 (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
 ```
@@ -99,7 +114,7 @@ EOF
 sudo sysctl --system
 ```
 
-- Enable cri-o repositories and gpg keys for version 1.23
+- Enable cri-o repositories and gpg keys
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
