@@ -14,18 +14,19 @@
 Ensure that inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
 ### Step 1: Pre-requisites
+
 - Update packages
 ```
-sudo apt-get update
+sudo apt-get update -y
 ```
 ```
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 ```
 ```
 sudo reboot
 ```
 
-- Enable iptables Bridged Traffic
+- Enable iptables bridged traffic (persists after reboot)
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -49,13 +50,171 @@ EOF
 sudo sysctl --system
 ```
 
-- Disable swap
+- Disable swap (persists after reboot)
 ```
 sudo swapoff -a
 ```
 ```
 (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
 ```
+
+
+### Step 2: [Option 1] Install container runtime (CRI-O)
+
+- Set environment variable (reference as $VariableName later) for OS and Kubernetes version
+```
+OS="xUbuntu_22.04"
+```
+```
+VERSION="1.28"
+```
+
+- Create .conf file to load modules at bootup
+```
+cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
+overlay
+br_netfilter
+EOF
+```
+
+- Enable overlayFS and VxLan pod communication
+```
+sudo modprobe overlay
+```
+```
+sudo modprobe br_netfilter
+```
+
+- Set up required sysctl params, these persist across reboots
+```
+cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+```
+
+- Reload the sysctl params
+```
+sudo sysctl --system
+```
+
+- Enable cri-o repositories and gpg keys for version 1.23
+```
+cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
+EOF
+```
+```
+cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
+deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
+EOF
+```
+```
+curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
+```
+```
+curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
+```
+
+- Install CRI-O and CRI-O tools
+```
+sudo apt-get update
+```
+```
+sudo apt-get install cri-o cri-o-runc -y
+```
+
+- Reload systemd and enable CRI-O
+```
+sudo systemctl daemon-reload
+```
+```
+sudo systemctl enable crio --now
+```
+
+
+### Step 2: [Option 2] Install container runtime (containerd)
+- XXX
+
+
+### Step 2: [Option 3] Install container runtime (cri-dockerd)
+- XXX
+
+
+
+### Step 3: Install kubeadm and kubelet and kubectl
+
+- Install required dependencies and download signing key
+```
+sudo apt-get update -y
+```
+```
+sudo apt-get install -y apt-transport-https ca-certificates curl
+```
+```
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
+```
+
+- Install required dependencies
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+
 
 
 
