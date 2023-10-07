@@ -89,6 +89,7 @@ EOF
 sudo sysctl --system
 ```
 
+STOP HERERE STOP HERERERARERERER
 - Enable cri-o repositories and gpg keys
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
