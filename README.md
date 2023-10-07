@@ -31,11 +31,35 @@ sudo apt-get upgrade -y
 sudo reboot
 ```
 
-### Step 2: Enable iptables bridged traffic (persists after reboot)
 
-- Write configuration into file (/etc/modules-load.d/k8s.conf)
+### Step 2: Disable swap (persists after reboot)
+
+- Turn off swap
 ```
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+sudo swapoff -a
+```
+
+- Turn off swap automatically during reboot
+```
+(crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
+```
+
+
+### Step 3: [Option 1] Install container runtime (CRI-O)
+
+- Set environment variable (OS version) to be referenced as $VariableName later
+```
+OS="xUbuntu_22.04"
+```
+
+- Set environment variable (kubernetes version) to be referenced as $VariableName later
+```
+VERSION="1.28"
+```
+
+- Create file (crio.conf under /etc/modules-load.d/) & write configuration (overlay and br_netfilter modules)
+```
+cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
 br_netfilter
 EOF
@@ -51,62 +75,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-- Write configuration into file (/etc/sysctl.d/k8s.conf)
-```
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-iptables  = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.ipv4.ip_forward                 = 1
-EOF
-```
-
-- Apply sysctl parameters without reboot
-```
-sudo sysctl --system
-```
-
-### Step 3: Disable swap (persists after reboot)
-
-- Turn off swap
-```
-sudo swapoff -a
-```
-
-- Turn off swap using crontab daemon
-```
-(crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
-```
-
-
-### Step 4: [Option 1] Install container runtime (CRI-O)
-
-- Set environment variable (reference as $VariableName later) for OS
-```
-OS="xUbuntu_22.04"
-```
-
-- Set environment variable (reference as $VariableName later) for Kubernetes version
-```
-VERSION="1.28"
-```
-
-- Create .conf file to load modules at bootup
-```
-cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
-overlay
-br_netfilter
-EOF
-```
-
-- Enable overlayFS and VxLan pod communication
-```
-sudo modprobe overlay
-```
-```
-sudo modprobe br_netfilter
-```
-
-- Set up required sysctl params, these persist across reboots
+- Create file (99-kubernetes-cri.conf under /etc/sysctl.d/) & write configuration (enable iptables bridged traffic)
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -115,7 +84,7 @@ net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 ```
 
-- Reload the sysctl params
+- Reload sysctl
 ```
 sudo sysctl --system
 ```
