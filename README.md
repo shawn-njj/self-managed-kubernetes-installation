@@ -106,7 +106,7 @@ deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stabl
 EOF
 ```
 
-- Create file (devel:kubic:libcontainers:stable.list under /etc/apt/sources.list.d/) & write configuration ()
+- Download the package GPG keys
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
