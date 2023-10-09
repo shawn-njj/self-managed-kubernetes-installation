@@ -92,24 +92,26 @@ EOF
 sudo sysctl --system
 ```
 
-- Create file (devel:kubic:libcontainers:stable.list under /etc/apt/sources.list.d/) & write configuration (add package source)
+- Create file (devel:kubic:libcontainers:stable.list under /etc/apt/sources.list.d/) & write configuration (add package source devel:/kubic:/libcontainers:/stable/$OS/)
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
 EOF
 ```
 
-- Create file (devel:kubic:libcontainers:stable:cri-o:$VERSION.list under /etc/apt/sources.list.d/) & write configuration (add package source)
+- Create file (devel:kubic:libcontainers:stable:cri-o:$VERSION.list under /etc/apt/sources.list.d/) & write configuration (add package source devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/)
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
 EOF
 ```
 
-- Download the package GPG keys
+- Download .gpg (private-public key) for package ()
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
+
+- Download .gpg (private-public key) for package ()
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -131,16 +133,16 @@ sudo systemctl enable crio --now
 ```
 
 
-### Step 4: [Option 2] Install container runtime (containerd)
-- XXX
+### Step 3: [Option 2] Install container runtime (containerd)
+- To be updated
 
 
-### Step 4: [Option 3] Install container runtime (cri-dockerd)
-- XXX
+### Step 3: [Option 3] Install container runtime (cri-dockerd)
+- To be updated
 
 
 
-### Step 5: Install kubeadm and kubelet and kubectl
+### Step 4: Install kubeadm and kubelet and kubectl
 
 - Install required dependencies and download signing key
 ```
