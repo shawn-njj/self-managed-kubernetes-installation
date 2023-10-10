@@ -192,7 +192,7 @@ sudo kubeadm config images pull
 ```
 
 
-### Step 6: [Option 1] Set up Master Node / Control Plane
+### Step 6: [Option 1] Set up Master Node / Control Plane using Public IP address
 
 - Set Master Node / Control Plane hostname variable to be referenced as $NODENAME later
 ```
@@ -215,7 +215,7 @@ sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-
 ```
 
 
-### Step 6: [Option 2] Initialize kubeadm based on Private IP Address of Master Node / Control Plane
+### Step 6: [Option 2] Set up Master Node / Control Plane using Private IP address
 
 - Set Master Node / Control Plane hostname variable to be referenced as $NODENAME later
 ```
