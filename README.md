@@ -50,12 +50,12 @@ sudo swapoff -a
 
 ### Step 3: [Option 1] Install container runtime (CRI-O)
 
-- Set OS environment variable to be referenced as $OS later
+- Set OS version environment variable to be referenced as $OS later
 ```
 OS="xUbuntu_22.04"
 ```
 
-- Set kubernetes environment variable to be referenced as $VERSION later
+- Set kubernetes version environment variable to be referenced as $VERSION later
 ```
 VERSION="1.28"
 ```
@@ -116,18 +116,17 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Install CRI-O and CRI-O tools
+- Install "cri-o" and "cri-o-runc"
 ```
-sudo apt-get update
-```
-```
-sudo apt-get install cri-o cri-o-runc -y
+sudo apt-get update -y && sudo apt-get install cri-o cri-o-runc -y
 ```
 
-- Reload systemd and enable CRI-O
+- Reload systemd
 ```
 sudo systemctl daemon-reload
 ```
+
+- Enable "cri-o"
 ```
 sudo systemctl enable crio --now
 ```
@@ -141,23 +140,31 @@ sudo systemctl enable crio --now
 - To be updated
 
 
-
 ### Step 4: Install kubeadm and kubelet and kubectl
 
-- Install required dependencies and download signing key
+- Set kubernetes long version environment variable to be referenced as $KUBERNETES_VERSION later
 ```
-sudo apt-get update -y
+KUBERNETES_VERSION="1.28.1-00"
 ```
+
+- Install "apt-transport-https" and "ca-certificates" and "curl" and "jq"
 ```
-sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
+
+- Download .gpg (private-public key) for kubernetes
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Install required dependencies
+- 
+```
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
+- Install kubeadm and kubelet and kubectl
+```
+sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION" kubeadm="$KUBERNETES_VERSION"
 ```
 ```
 
