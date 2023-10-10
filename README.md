@@ -238,7 +238,7 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 ```
 
 
-### Step 7: Configure kubeconfig
+### Step 7: Create Kubernetes configuration file
 
 - Create hidden directory ""$HOME"/.kube"
 ```
