@@ -448,7 +448,7 @@ EOF
 ```
 
 
-### Step 5: Register Worker Node to Master Node / Control Plan
+### Step 5: Register Worker Node to Master Node / Control Plane
 
 - Go to Master Node / Control Plane, generate token for Worker Node to join
 ```
