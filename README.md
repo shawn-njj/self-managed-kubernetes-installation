@@ -134,11 +134,15 @@ sudo systemctl enable crio --now
 
 ### Step 3: [Option 2] Install container runtime containerd
 - To be updated
+```
 
+```
 
 ### Step 3: [Option 3] Install container runtime cri-dockerd
 - To be updated
+```
 
+```
 
 ### Step 4: Install kubeadm and kubelet and kubectl
 
@@ -180,57 +184,97 @@ EOF
 ```
 
 
+### Step 5: Pull required container images to set up Master Node / Control Plane components
 
+- Pull 7 container images
 ```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
+sudo kubeadm config images pull
 ```
 
 
+### Step 6: [Option 1] Set up Master Node / Control Plane
+
+- Set Master Node / Control Plane hostname variable to be referenced as $NODENAME later
+```
+NODENAME=$(hostname -s)
+```
+
+- Set Master Node / Control Plane CIDR range variable to be referenced as $POD_CIDR later
+```
+POD_CIDR="192.168.0.0/16"
+```
+
+- Set Master Node / Control Plane Public IP address variable to be referenced as $MASTER_PUBLIC_IP later
+```
+MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
+```
+
+- Run Master Node / Control Plane with Public IP address and Pod CIDR range and Node name
+```
+sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-extra-sans="$MASTER_PUBLIC_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
+```
+
+
+### Step 6: [Option 2] Initialize kubeadm based on Private IP Address of Master Node / Control Plane
+
+- Set Master Node / Control Plane hostname variable to be referenced as $NODENAME later
+```
+NODENAME=$(hostname -s)
+```
+
+- Set Master Node / Control Plane CIDR range variable to be referenced as $POD_CIDR later
+```
+POD_CIDR="192.168.0.0/16"
+```
+
+- Set Master Node / Control Plane Private IP address variable to be referenced as $MASTER_PRIVATE_IP later
+```
+MASTER_PRIVATE_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)
+```
+
+- Run Master Node / Control Plane with Private IP address and Pod CIDR range and Node name
+```
+sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
+```
+
+
+### Step 7: Configure kubeconfig
+
+- Create hidden directory ""$HOME"/.kube"
+```
+mkdir -p "$HOME"/.kube
+```
+
+- Copy file "/etc/kubernetes/admin.conf" into file ""$HOME"/.kube/config"
+```
+sudo cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
+```
+
+- Change file ""$HOME"/.kube/config" ownership to root user and group
+```
+sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
+```
+
+
+# Step 8: [Option 1] Install CNI Calico
+
+- Create Kubernetes resource "kind: CustomResourceDefinition" for Calico CNI
+```
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+```
+
+- Create Kubernetes resource "kind: Installation" for Calico CNI
+```
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
+```
+
+
+# Step 8: [Option 2] Install CNI Flannel
+
+- To be Updated
+```
+
+```
 
 
 
