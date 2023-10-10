@@ -256,7 +256,7 @@ sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
 ```
 
 
-# Step 8: [Option 1] Install CNI Calico
+### Step 8: [Option 1] Install CNI Calico
 
 - Create Kubernetes resource "kind: CustomResourceDefinition" for Calico CNI
 ```
@@ -269,7 +269,7 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1
 ```
 
 
-# Step 8: [Option 2] Install CNI Flannel
+### Step 8: [Option 2] Install CNI Flannel
 
 - To be Updated
 ```
