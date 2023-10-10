@@ -50,17 +50,17 @@ sudo swapoff -a
 
 ### Step 3: [Option 1] Install container runtime (CRI-O)
 
-- Set environment variable (OS version) to be referenced as $VariableName later
+- Set OS environment variable to be referenced as $OS later
 ```
 OS="xUbuntu_22.04"
 ```
 
-- Set environment variable (kubernetes version) to be referenced as $VariableName later
+- Set kubernetes environment variable to be referenced as $VERSION later
 ```
 VERSION="1.28"
 ```
 
-- Create file (crio.conf under /etc/modules-load.d/) & write configuration (enable overlay and br_netfilter modules)
+- Create file "crio.conf" under "/etc/modules-load.d/" & write configuration to enable modules "overlay" & "br_netfilter"
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
@@ -68,17 +68,17 @@ br_netfilter
 EOF
 ```
 
-- Add module (overlay) into kernel
+- Load module "overlay" into kernel
 ```
 sudo modprobe overlay
 ```
 
-- Add module (br_netfilter) into kernel
+- Load module "br_netfilter" into kernel
 ```
 sudo modprobe br_netfilter
 ```
 
-- Create file (99-kubernetes-cri.conf under /etc/sysctl.d/) & write configuration (enable iptables bridged traffic)
+- Create file "99-kubernetes-cri.conf" under "/etc/sysctl.d/" & write configuration to enable iptables bridged traffic
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -92,28 +92,28 @@ EOF
 sudo sysctl --system
 ```
 
-- Create file (devel:kubic:libcontainers:stable.list under /etc/apt/sources.list.d/) & write configuration (add package source devel:/kubic:/libcontainers:/stable/$OS/)
+- Create file "devel:kubic:libcontainers:stable.list" under "/etc/apt/sources.list.d/" & write configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
 EOF
 ```
 
-- Create file (devel:kubic:libcontainers:stable:cri-o:$VERSION.list under /etc/apt/sources.list.d/) & write configuration (add package source devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/)
+- Download .gpg (private-public key) for package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+```
+curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
+```
+
+- Create file "devel:kubic:libcontainers:stable:cri-o:$VERSION.list" under "/etc/apt/sources.list.d/" & write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
 EOF
 ```
 
-- Download .gpg (private-public key) for package ()
+- Download .gpg (private-public key) for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
-```
-
-- Download .gpg (private-public key) for package ()
-```
-curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
 - Install CRI-O and CRI-O tools
