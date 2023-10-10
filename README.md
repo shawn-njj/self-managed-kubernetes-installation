@@ -172,7 +172,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" 
 local_ip="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write/Append configuration to use the local machine's private IP address as node-IP for the kubelet system daemon into file "/etc/default/kubelet"
+- Write/Append configuration to use the local machine's private IP address as node-IP of the kubelet system daemon into file "/etc/default/kubelet"
 ```
 cat > /etc/default/kubelet << EOF
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
