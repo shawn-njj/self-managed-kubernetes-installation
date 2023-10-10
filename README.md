@@ -1,5 +1,7 @@
 # Kubernetes Cluster Installation
 
+
+
 ## ARCHITECTURE
 ![alt text](https://github.com/shawn-njj/k8s-cluster-installation/blob/main/kube.drawio.png?raw=true)
 
@@ -9,9 +11,6 @@
 - For the worker nodes, a minimum of 1vCPU and 2 GB RAM is recommended.
 - 10.X.X.X/X network range with static IPs for master and worker nodes. We will be using the 192.x.x.x series as the pod network range that will be used by the Calico network plugin. Make sure the Node IP range and pod IP range DO NOT overlap.
 
-### LINKS
-- https://devopscube.com/setup-kubernetes-cluster-kubeadm/
-- https://github.com/techiescamp/kubeadm-scripts
 
 
 ## MASTER NODE / CONTROL PLANE
@@ -268,6 +267,11 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
 ```
 
+- Check Calico pods is running
+```
+kubectl get pod -n kube-system
+```
+
 
 ### Step 8: [Option 2] Install CNI Flannel
 
@@ -443,4 +447,25 @@ KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
 ```
 
-### Step 5: Register worker node to master node
+
+### Step 5: Register Worker Node to Master Node / Control Plan
+
+- Go to Master Node / Control Plane, generate token for Worker Node to join
+```
+kubeadm token create --print-join-command
+```
+
+- Go to Worker Node, join Master Node / Control Plane using token
+```
+sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cert-hash sha256:<TOKEN_HASH>
+```
+
+- Go to Master Node / Control Plane, check if Worker Node has joined
+```
+kubectl get nodes
+```
+
+- Go to Master Node / Control Plane, give role to Worker Node
+```
+kubectl label node <WORKER_NODE_NAME> node-role.kubernetes.io/worker=worker
+```
