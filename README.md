@@ -10,8 +10,8 @@
 - 10.X.X.X/X network range with static IPs for master and worker nodes. We will be using the 192.x.x.x series as the pod network range that will be used by the Calico network plugin. Make sure the Node IP range and pod IP range DO NOT overlap.
 
 ### LINKS
-https://devopscube.com/setup-kubernetes-cluster-kubeadm/
-https://github.com/techiescamp/kubeadm-scripts
+- https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+- https://github.com/techiescamp/kubeadm-scripts
 
 
 ## MASTER NODE / CONTROL PLANE
@@ -35,7 +35,7 @@ sudo reboot
 ```
 
 
-### Step 2: Disable swap (persists after reboot)
+### Step 2: Disable swap with persists after reboot
 
 - Turn off swap
 ```
@@ -48,19 +48,19 @@ sudo swapoff -a
 ```
 
 
-### Step 3: [Option 1] Install container runtime (CRI-O)
+### Step 3: [Option 1] Install container runtime cri-o
 
-- Set OS version environment variable to be referenced as $OS later
+- Set OS version variable to be referenced as $OS later
 ```
 OS="xUbuntu_22.04"
 ```
 
-- Set kubernetes version environment variable to be referenced as $VERSION later
+- Set kubernetes version variable to be referenced as $VERSION later
 ```
 VERSION="1.28"
 ```
 
-- Create file "crio.conf" under "/etc/modules-load.d/" & write configuration to enable modules "overlay" & "br_netfilter"
+- Write/Append configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
@@ -78,7 +78,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-- Create file "99-kubernetes-cri.conf" under "/etc/sysctl.d/" & write configuration to enable iptables bridged traffic
+- Write/Append configuration to enable iptables bridged traffic into file "/etc/sysctl.d/99-kubernetes-cri.conf"
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -92,26 +92,26 @@ EOF
 sudo sysctl --system
 ```
 
-- Create file "devel:kubic:libcontainers:stable.list" under "/etc/apt/sources.list.d/" & write configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+- Write/Append configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" 
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
 EOF
 ```
 
-- Download .gpg (private-public key) for package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+- Download .gpg private-public signing key for package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Create file "devel:kubic:libcontainers:stable:cri-o:$VERSION.list" under "/etc/apt/sources.list.d/" & write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
+- Write/Append configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
 EOF
 ```
 
-- Download .gpg (private-public key) for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
+- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -132,17 +132,17 @@ sudo systemctl enable crio --now
 ```
 
 
-### Step 3: [Option 2] Install container runtime (containerd)
+### Step 3: [Option 2] Install container runtime containerd
 - To be updated
 
 
-### Step 3: [Option 3] Install container runtime (cri-dockerd)
+### Step 3: [Option 3] Install container runtime cri-dockerd
 - To be updated
 
 
 ### Step 4: Install kubeadm and kubelet and kubectl
 
-- Set kubernetes long version environment variable to be referenced as $KUBERNETES_VERSION later
+- Set kubernetes long version variable to be referenced as $KUBERNETES_VERSION later
 ```
 KUBERNETES_VERSION="1.28.1-00"
 ```
@@ -152,12 +152,12 @@ KUBERNETES_VERSION="1.28.1-00"
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download .gpg (private-public key) for kubernetes
+- Download .gpg private-public signing key for package source "https://apt.kubernetes.io/"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- 
+- Write/Append configuration to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key into file "/etc/apt/sources.list.d/kubernetes.list"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -166,12 +166,21 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 ```
 sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION" kubeadm="$KUBERNETES_VERSION"
 ```
+
+- Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $local_ip later
+```
+local_ip="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
+- Write/Append configuration to use the local machine's private IP address as node-IP for the kubelet system daemon into file "/etc/default/kubelet"
 ```
+cat > /etc/default/kubelet << EOF
+KUBELET_EXTRA_ARGS=--node-ip=$local_ip
+EOF
 ```
 
-```
+
+
 ```
 
 ```
