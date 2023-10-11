@@ -130,6 +130,11 @@ sudo systemctl daemon-reload
 sudo systemctl enable crio --now
 ```
 
+- Verify "cri-o" is running
+```
+systemctl status -l crio
+```
+
 
 ### Step 3: [Option 2] Install container runtime containerd
 - To be updated
