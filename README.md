@@ -175,15 +175,15 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION" kubeadm="$KUBERNETES_VERSION"
 ```
 
-- Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $LOCAL_IP later
+- Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $PRIVATE_IP later
 ```
-LOCAL_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
+PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
 - Write/Append configuration to use the local machine's private IP address as node-IP of the kubelet system daemon into file "/etc/default/kubelet"
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
-KUBELET_EXTRA_ARGS=--node-ip=$LOCAL_IP
+KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
 EOF
 ```
 
@@ -453,15 +453,15 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION" kubeadm="$KUBERNETES_VERSION"
 ```
 
-- Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $LOCAL_IP later
+- Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $PRIVATE_IP later
 ```
-LOCAL_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
+PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
 - Write/Append configuration to use the local machine's private IP address as node-IP of the kubelet system daemon into file "/etc/default/kubelet"
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
-KUBELET_EXTRA_ARGS=--node-ip=$LOCAL_IP
+KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
 EOF
 ```
 
