@@ -244,19 +244,19 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 
 ### Step 7: Create Kubernetes configuration file
 
-- Create hidden directory ""$HOME"/.kube"
+- Create hidden directory "$HOME/.kube"
 ```
-mkdir -p "$HOME"/.kube
-```
-
-- Copy file "/etc/kubernetes/admin.conf" into file ""$HOME"/.kube/config"
-```
-sudo cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
+mkdir -p $HOME/.kube
 ```
 
-- Change file ""$HOME"/.kube/config" ownership to root user and group
+- Copy file "/etc/kubernetes/admin.conf" into file "$HOME/.kube/config"
 ```
-sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+```
+
+- Change file "$HOME/.kube/config" ownership to root user and group
+```
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 
