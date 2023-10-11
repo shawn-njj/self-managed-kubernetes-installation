@@ -14,7 +14,7 @@
 
 
 ## MASTER NODE / CONTROL PLANE
-IMPORTANT: Ensure that inbound TCP ports (6443, 2379-2380, 10250-10252) are open
+IMPORTANT: Ensure inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
 ### Step 1: Update
 
@@ -301,7 +301,7 @@ kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=master
 
 
 ## WORKER NODE
-IMPORTANT: Ensure that inbound TCP ports (10250, 30000-32767) are open
+IMPORTANT: Ensure inbound TCP ports (10250, 30000-32767) are open
 
 ### Step 1: Update
 
