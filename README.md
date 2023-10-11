@@ -286,7 +286,7 @@ kubectl get pod -n kube-system
 ```
 
 
-### Step 9: Assign master role to Master Node / Control Plane
+### Step 9: Assign control plane role to Master Node / Control Plane
 
 - Verify Master Node / Control Plane is up
 ```
