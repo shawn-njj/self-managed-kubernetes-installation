@@ -195,7 +195,7 @@ EOF
 
 ### Step 5: Pull required container images to set up Master Node / Control Plane components
 
-- Pull 7 container images
+- Pull 7 container images comprising kube-api-server / kube-controller-manager / kube-scheduler / kube-proxy / pause / etcd / coredns
 ```
 sudo kubeadm config images pull
 ```
