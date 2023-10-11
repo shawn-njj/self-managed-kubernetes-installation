@@ -14,7 +14,7 @@
 
 
 ## MASTER NODE / CONTROL PLANE
-Ensure that inbound TCP ports (6443, 2379-2380, 10250-10252) are open
+IMPORTANT: Ensure that inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
 ### Step 1: Update
 
@@ -286,9 +286,22 @@ kubectl get pod -n kube-system
 ```
 
 
+### Step 9: Assign master role to Master Node / Control Plane
+
+- Verify Master Node / Control Plane is up
+```
+kubectl get nodes
+```
+
+- Assign role to Master Node / Control Plane
+```
+kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=master
+```
+
+
 
 ## WORKER NODE
-Ensure that inbound TCP ports (10250, 30000-32767) are open
+IMPORTANT: Ensure that inbound TCP ports (10250, 30000-32767) are open
 
 ### Step 1: Update
 
@@ -465,12 +478,15 @@ kubeadm token create --print-join-command
 sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cert-hash sha256:<TOKEN_HASH>
 ```
 
-- Go to Master Node / Control Plane, check if Worker Node has joined
+
+### Step 6: Assign worker role to Worker Node
+
+- Go to Master Node / Control Plane, verify Worker Node is up
 ```
 kubectl get nodes
 ```
 
-- Go to Master Node / Control Plane, give role to Worker Node
+- Go to Master Node / Control Plane, Assign role to Worker Node
 ```
 kubectl label node <WORKER_NODE_NAME> node-role.kubernetes.io/worker=worker
 ```
