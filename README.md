@@ -295,7 +295,7 @@ kubectl get nodes
 
 - Assign role to Master Node / Control Plane
 ```
-kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=master
+kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/control-plane=control-plane
 ```
 
 
