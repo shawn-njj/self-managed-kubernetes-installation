@@ -186,6 +186,11 @@ cat > /etc/default/kubelet << EOF
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
 ```
+```
+cat <<EOF | sudo tee /etc/default/kubelet
+KUBELET_EXTRA_ARGS=--node-ip=$local_ip
+EOF
+```
 
 
 ### Step 5: Pull required container images to set up Master Node / Control Plane components
