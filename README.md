@@ -242,7 +242,7 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 ```
 
 
-### Step 7: Create Kubernetes configuration file
+### Step 7: Configure kubectl to have access to the cluster
 
 - Create hidden directory "$HOME/.kube"
 ```
