@@ -188,15 +188,7 @@ EOF
 ```
 
 
-### Step 5: Pull required container images to set up Master Node / Control Plane components
-
-- Pull 7 container images comprising kube-api-server / kube-controller-manager / kube-scheduler / kube-proxy / pause / etcd / coredns
-```
-sudo kubeadm config images pull
-```
-
-
-### Step 6: [Option 1] Set up Master Node / Control Plane using Public IP address
+### Step 5: [Option 1] Set up Master Node / Control Plane using Public IP address
 
 - Set Master Node / Control Plane hostname variable to be referenced as $NODENAME later
 ```
@@ -213,13 +205,18 @@ POD_CIDR="192.168.0.0/16"
 MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
 ```
 
+- Pull 7 container images comprising kube-api-server / kube-controller-manager / kube-scheduler / kube-proxy / pause / etcd / coredns
+```
+sudo kubeadm config images pull
+```
+
 - Run Master Node / Control Plane with Public IP address and Pod CIDR range and Node name
 ```
 sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-extra-sans="$MASTER_PUBLIC_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
 
 
-### Step 6: [Option 2] Set up Master Node / Control Plane using Private IP address
+### Step 5: [Option 2] Set up Master Node / Control Plane using Private IP address
 
 - Set Master Node / Control Plane hostname variable to be referenced as $NODENAME later
 ```
@@ -236,13 +233,18 @@ POD_CIDR="192.168.0.0/16"
 MASTER_PRIVATE_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)
 ```
 
+- Pull 7 container images comprising kube-api-server / kube-controller-manager / kube-scheduler / kube-proxy / pause / etcd / coredns
+```
+sudo kubeadm config images pull
+```
+
 - Run Master Node / Control Plane with Private IP address and Pod CIDR range and Node name
 ```
 sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
 
 
-### Step 7: Configure kubectl to have access to the cluster
+### Step 6: Configure kubectl to have access to the cluster
 
 - Create hidden directory "$HOME/.kube"
 ```
@@ -260,7 +262,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 
-### Step 8: [Option 1] Install CNI Calico
+### Step 7: [Option 1] Install CNI Calico
 
 - Create Kubernetes resource "kind: CustomResourceDefinition" for Calico CNI
 ```
@@ -278,7 +280,7 @@ kubectl get pod -n kube-system
 ```
 
 
-### Step 8: [Option 2] Install CNI Flannel
+### Step 7: [Option 2] Install CNI Flannel
 
 - To be Updated
 ```
@@ -286,7 +288,7 @@ kubectl get pod -n kube-system
 ```
 
 
-### Step 9: Assign control plane role to Master Node / Control Plane
+### Step 8: Assign control plane role to Master Node / Control Plane
 
 - Verify Master Node / Control Plane is up
 ```
@@ -484,7 +486,33 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 ```
 
 
-### Step 6: Assign worker role to Worker Node
+### Step 6: Configure kubectl to have access to the cluster
+
+- Go to Worker Node, create hidden directory "$HOME/.kube"
+```
+mkdir -p $HOME/.kube
+```
+
+- Go to Master Node / Control Plane, set up for file transfer
+```
+python http server
+```
+
+- Go to Worker Node, Download file "XXX" from Master Node / Control Plane
+
+
+- Go to Worker Node, Copy file "/etc/kubernetes/admin.conf" into file "$HOME/.kube/config"
+```
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+```
+
+- Go to Worker Node, Change file "$HOME/.kube/config" ownership to root user and group
+```
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+
+### Step 7: Assign worker role to Worker Node
 
 - Go to Master Node / Control Plane, verify Worker Node is up
 ```
