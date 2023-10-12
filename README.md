@@ -297,7 +297,7 @@ kubectl get nodes
 
 - Assign role to Master Node / Control Plane
 ```
-kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/control-plane=control-plane
+kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=true
 ```
 
 
@@ -493,15 +493,17 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 mkdir -p $HOME/.kube
 ```
 
-- Go to Master Node / Control Plane, set up for file transfer
+- Go to Master Node / Control Plane, start file transfer server
 ```
 python http server
 ```
 
-- Go to Worker Node, Download file "XXX" from Master Node / Control Plane
+- Go to Worker Node, download file "XXX" from Master Node / Control Plane
+```
 
+```
 
-- Go to Worker Node, Copy file "/etc/kubernetes/admin.conf" into file "$HOME/.kube/config"
+- Go to Worker Node, copy file "/etc/kubernetes/admin.conf" into file "$HOME/.kube/config"
 ```
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
