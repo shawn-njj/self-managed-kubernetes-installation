@@ -59,7 +59,7 @@ OS="xUbuntu_22.04"
 VERSION="1.28"
 ```
 
-- Write/Append configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
+- Write configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
@@ -77,7 +77,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-- Write/Append configuration to enable iptables bridged traffic into file "/etc/sysctl.d/99-kubernetes-cri.conf"
+- Write configuration to enable iptables bridged traffic into file "/etc/sysctl.d/99-kubernetes-cri.conf"
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -91,7 +91,7 @@ EOF
 sudo sysctl --system
 ```
 
-- Write/Append configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" 
+- Write configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" 
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
@@ -103,7 +103,7 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Write/Append configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
+- Write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
@@ -165,7 +165,7 @@ sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificat
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Write/Append configuration to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key into file "/etc/apt/sources.list.d/kubernetes.list"
+- Write configuration to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key into file "/etc/apt/sources.list.d/kubernetes.list"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -180,7 +180,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" 
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write/Append configuration to use the local machine's private IP address as node-IP into file "/etc/default/kubelet"
+- Write configuration to use the local machine's private IP address as node-IP into file "/etc/default/kubelet"
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
@@ -348,7 +348,7 @@ OS="xUbuntu_22.04"
 VERSION="1.28"
 ```
 
-- Write/Append configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
+- Write configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
@@ -366,7 +366,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-- Write/Append configuration to enable iptables bridged traffic into file "/etc/sysctl.d/99-kubernetes-cri.conf"
+- Write configuration to enable iptables bridged traffic into file "/etc/sysctl.d/99-kubernetes-cri.conf"
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -380,7 +380,7 @@ EOF
 sudo sysctl --system
 ```
 
-- Write/Append configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" 
+- Write configuration to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" 
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
@@ -392,7 +392,7 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Write/Append configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
+- Write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
@@ -450,7 +450,7 @@ sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificat
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Write/Append configuration to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key into file "/etc/apt/sources.list.d/kubernetes.list"
+- Write configuration to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key into file "/etc/apt/sources.list.d/kubernetes.list"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -465,7 +465,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" 
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write/Append configuration to use the local machine's private IP address as node-IP into file "/etc/default/kubelet"
+- Write configuration to use the local machine's private IP address as node-IP into file "/etc/default/kubelet"
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
