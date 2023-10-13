@@ -244,7 +244,7 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 ```
 
 
-### Step 6: Configure kubectl in Master Node / COntrol Plane to have access to the cluster
+### Step 6: Configure kubectl in Master Node / Control Plane to have access to the cluster
 
 - Create hidden directory "$HOME/.kube"
 ```
