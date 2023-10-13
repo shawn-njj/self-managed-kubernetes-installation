@@ -288,7 +288,7 @@ kubectl get pod -n kube-system
 ```
 
 
-### Step 8: Assign control plane role to Master Node / Control Plane
+### Step 8: Assign role to Master Node / Control Plane
 
 - Verify Master Node / Control Plane is up
 ```
@@ -514,7 +514,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 
-### Step 7: Assign worker role to Worker Node
+### Step 7: Assign role to Worker Node
 
 - Go to Master Node / Control Plane, verify Worker Node is up
 ```
