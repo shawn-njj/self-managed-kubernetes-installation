@@ -244,7 +244,7 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 ```
 
 
-### Step 6: Configure kubectl to have access to the cluster
+### Step 6: Configure kubectl in Master Node / COntrol Plane to have access to the cluster
 
 - Create hidden directory "$HOME/.kube"
 ```
@@ -486,7 +486,7 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 ```
 
 
-### Step 6: Configure kubectl to have access to the cluster
+### Step 6: Configure kubectl in Worker Node to have access to the cluster
 
 - Go to Worker Node, create hidden directory "$HOME/.kube"
 ```
