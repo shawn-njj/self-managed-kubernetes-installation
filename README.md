@@ -508,7 +508,7 @@ python http server
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
-- Go to Worker Node, Change file "$HOME/.kube/config" ownership to root user and group
+- Go to Worker Node, change file "$HOME/.kube/config" ownership to root user and group
 ```
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
