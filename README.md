@@ -54,9 +54,9 @@ sudo swapoff -a
 OS="xUbuntu_22.04"
 ```
 
-- Set kubernetes version variable to be referenced as $VERSION later
+- Set kubernetes version variable to be referenced as $KUBERNETES_SHORT_VERSION later
 ```
-VERSION="1.28"
+KUBERNETES_SHORT_VERSION="1.28"
 ```
 
 - Write configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
@@ -103,16 +103,16 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
+- Write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list"
 ```
-cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
-deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
+cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list
+deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/ /
 EOF
 ```
 
-- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
+- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/"
 ```
-curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
+curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
 - Install "cri-o" and "cri-o-runc"
@@ -150,9 +150,9 @@ systemctl status -l crio
 
 ### Step 4: Install kubeadm and kubelet and kubectl
 
-- Set kubernetes long version variable to be referenced as $KUBERNETES_VERSION later
+- Set kubernetes long version variable to be referenced as $KUBERNETES_LONG_VERSION later
 ```
-KUBERNETES_VERSION="1.28.1-00"
+KUBERNETES_LONG_VERSION="1.28.1-00"
 ```
 
 - Install "apt-transport-https" and "ca-certificates" and "curl" and "jq"
@@ -172,7 +172,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 
 - Install kubeadm and kubelet and kubectl
 ```
-sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION" kubeadm="$KUBERNETES_VERSION"
+sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERSION" kubectl="$KUBERNETES_LONG_VERSION" kubeadm="$KUBERNETES_LONG_VERSION"
 ```
 
 - Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $PRIVATE_IP later
@@ -343,9 +343,9 @@ sudo swapoff -a
 OS="xUbuntu_22.04"
 ```
 
-- Set kubernetes version variable to be referenced as $VERSION later
+- Set kubernetes short version variable to be referenced as $KUBERNETES_SHORT_VERSION later
 ```
-VERSION="1.28"
+KUBERNETES_SHORT_VERSION="1.28"
 ```
 
 - Write configuration to enable modules "overlay" & "br_netfilter" into file "/etc/modules-load.d/crio.conf" 
@@ -392,16 +392,16 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list"
+- Write configuration to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list"
 ```
-cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
-deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /
+cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list
+deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/ /
 EOF
 ```
 
-- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/"
+- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/"
 ```
-curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
+curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
 - Install "cri-o" and "cri-o-runc"
@@ -435,9 +435,9 @@ systemctl status -l crio
 
 ### Step 4: Install kubeadm and kubelet and kubectl
 
-- Set kubernetes long version variable to be referenced as $KUBERNETES_VERSION later
+- Set kubernetes long version variable to be referenced as $KUBERNETES_LONG_VERSION later
 ```
-KUBERNETES_VERSION="1.28.1-00"
+KUBERNETES_LONG_VERSION="1.28.1-00"
 ```
 
 - Install "apt-transport-https" and "ca-certificates" and "curl" and "jq"
@@ -457,7 +457,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 
 - Install kubeadm and kubelet and kubectl
 ```
-sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION" kubeadm="$KUBERNETES_VERSION"
+sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERSION" kubectl="$KUBERNETES_LONG_VERSION" kubeadm="$KUBERNETES_LONG_VERSION"
 ```
 
 - Retrieves the local IPv4 address for "eth0" network and stores it as variable to be referenced as $PRIVATE_IP later
