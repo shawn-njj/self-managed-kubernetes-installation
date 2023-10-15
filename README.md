@@ -59,7 +59,7 @@ OS="xUbuntu_22.04"
 KUBERNETES_SHORT_VERSION="1.28"
 ```
 
-- Write line(s) into file "/etc/modules-load.d/crio.conf" to enable modules "overlay" & "br_netfilter"
+- Write line(s) "overlay" + "br_netfilter" into file "/etc/modules-load.d/crio.conf"
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
@@ -77,7 +77,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-- Write line(s) into file "/etc/sysctl.d/99-crio.conf" to enable iptables bridged traffic
+- Write line(s) "net.bridge.bridge-nf-call-iptables = 1" + "net.ipv4.ip_forward = 1" + "net.bridge.bridge-nf-call-ip6tables = 1" into file "/etc/sysctl.d/99-crio.conf"
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-crio.conf
 net.bridge.bridge-nf-call-iptables  = 1
