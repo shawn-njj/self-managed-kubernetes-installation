@@ -180,7 +180,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERS
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write line(s) into file "/etc/default/kubelet" to use the local machine's private IP address as node-IP
+- Write line(s) into file "/etc/default/kubelet" to use the local machine's private IP as Master Node / Control Plane IP
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
@@ -465,7 +465,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERS
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write line(s) into file "/etc/default/kubelet" to use the local machine's private IP address as node-IP
+- Write line(s) into file "/etc/default/kubelet" to use the local machine's private IP as Worker Node IP
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
