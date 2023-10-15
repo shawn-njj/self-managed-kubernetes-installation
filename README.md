@@ -91,26 +91,26 @@ EOF
 sudo sysctl --system
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+- Write line(s) "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
 EOF
 ```
 
-- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list" to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/"
+- Write line(s) "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/ /" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/ /
 EOF
 ```
 
-- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -160,12 +160,12 @@ KUBERNETES_LONG_VERSION="1.28.1-00"
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download .gpg private-public signing key "https://dl.k8s.io/apt/doc/apt-key.gpg" into "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Download .gpg private-public signing key "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/kubernetes.list" to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Write line(s) "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" into file "/etc/apt/sources.list.d/kubernetes.list"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -180,7 +180,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERS
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write line(s) into file "/etc/default/kubelet" to use the local machine's private IP as Master Node / Control Plane IP
+- Write line(s) "KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP" into file "/etc/default/kubelet"
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
@@ -210,7 +210,7 @@ MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
 sudo kubeadm config images pull
 ```
 
-- Run Master Node / Control Plane with Public IP address and Pod CIDR range and Node name
+- Run Master Node / Control Plane with Public IP and Pod CIDR range and Node name
 ```
 sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-extra-sans="$MASTER_PUBLIC_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
@@ -238,7 +238,7 @@ MASTER_PRIVATE_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)
 sudo kubeadm config images pull
 ```
 
-- Run Master Node / Control Plane with Private IP address and Pod CIDR range and Node name
+- Run Master Node / Control Plane with Private IP and Pod CIDR range and Node name
 ```
 sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
@@ -353,7 +353,7 @@ OS="xUbuntu_22.04"
 KUBERNETES_SHORT_VERSION="1.28"
 ```
 
-- Write line(s) into file "/etc/modules-load.d/crio.conf" to enable modules "overlay" & "br_netfilter"
+- Write line(s) "overlay" + "br_netfilter" into file "/etc/modules-load.d/crio.conf"
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/crio.conf
 overlay
@@ -371,7 +371,7 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-- Write line(s) into file "/etc/sysctl.d/99-crio.conf" to enable iptables bridged traffic
+- Write line(s) "net.bridge.bridge-nf-call-iptables = 1" + "net.ipv4.ip_forward = 1" + "net.bridge.bridge-nf-call-ip6tables = 1" into file "/etc/sysctl.d/99-crio.conf"
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-crio.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -385,26 +385,26 @@ EOF
 sudo sysctl --system
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" to add package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+- Write line(s) "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
 EOF
 ```
 
-- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list" to add package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/" 
+- Write line(s) "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/ /" into file "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list"
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION.list
 deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/ /
 EOF
 ```
 
-- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -450,12 +450,12 @@ KUBERNETES_LONG_VERSION="1.28.1-00"
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download .gpg private-public signing key "https://dl.k8s.io/apt/doc/apt-key.gpg" into "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Download .gpg private-public signing key "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/kubernetes.list" to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Write line(s) "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" into file "/etc/apt/sources.list.d/kubernetes.list"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -470,7 +470,7 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERS
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Write line(s) into file "/etc/default/kubelet" to use the local machine's private IP as Worker Node IP
+- Write line(s) "KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP" into file "/etc/default/kubelet"
 ```
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
