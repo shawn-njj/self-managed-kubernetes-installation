@@ -488,19 +488,19 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 
 ### Step 6: Configure kubectl in Worker Node to have access to the cluster
 
+- Go to Master Node / Control Plane, start python HTTP file transfer server on directory "/etc/kubernetes/"
+```
+cd /etc/kubernetes/ && python -m SimpleHTTPServer 9001
+```
+
+- Go to Worker Node, download file "/etc/kubernetes/admin.conf" from Master Node / Control Plane
+```
+sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /etc/kubernetes/admin.conf
+```
+
 - Go to Worker Node, create hidden directory "$HOME/.kube"
 ```
 mkdir -p $HOME/.kube
-```
-
-- Go to Master Node / Control Plane, start file transfer server
-```
-python http server
-```
-
-- Go to Worker Node, download file "XXX" from Master Node / Control Plane
-```
-
 ```
 
 - Go to Worker Node, copy file "/etc/kubernetes/admin.conf" into file "$HOME/.kube/config"
