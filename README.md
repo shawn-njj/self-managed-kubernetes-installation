@@ -98,7 +98,7 @@ deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stab
 EOF
 ```
 
-- Download .gpg private-public signing key for package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -110,7 +110,7 @@ deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stabl
 EOF
 ```
 
-- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -160,12 +160,12 @@ KUBERNETES_LONG_VERSION="1.28.1-00"
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download .gpg private-public signing key for package source "https://apt.kubernetes.io/"
+- Download .gpg private-public signing key "https://dl.k8s.io/apt/doc/apt-key.gpg" into "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/kubernetes.list" to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key
+- Write line(s) into file "/etc/apt/sources.list.d/kubernetes.list" to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -392,7 +392,7 @@ deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stab
 EOF
 ```
 
-- Download .gpg private-public signing key for package source "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -404,7 +404,7 @@ deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stabl
 EOF
 ```
 
-- Download .gpg private-public signing key for package source "http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$KUBERNETES_SHORT_VERSION/$OS/"
+- Download .gpg private-public signing key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -450,12 +450,12 @@ KUBERNETES_LONG_VERSION="1.28.1-00"
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download .gpg private-public signing key for package source "https://apt.kubernetes.io/"
+- Download .gpg private-public signing key "https://dl.k8s.io/apt/doc/apt-key.gpg" into "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
 
-- Write line(s) into file "/etc/apt/sources.list.d/kubernetes.list" to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key
+- Write line(s) into file "/etc/apt/sources.list.d/kubernetes.list" to add package source "https://apt.kubernetes.io/" with the .gpg private-public signing key "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
@@ -493,14 +493,14 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 
 ### Step 6: Configure kubectl in Worker Node to have access to the cluster
 
-- Go to Master Node / Control Plane, start python3 HTTP file transfer server on directory "/etc/kubernetes/"
+- Go to Master Node / Control Plane, start python3 HTTP file transfer server on directory "/etc/kubernetes"
 ```
-cd /etc/kubernetes/ && python3 -m http.server 9001
+cd /etc/kubernetes && sudo python3 -m http.server 9001
 ```
 
-- Go to Worker Node, download file "/etc/kubernetes/admin.conf" from Master Node / Control Plane
+- Go to Worker Node, download file "admin.conf" from Master Node / Control Plane into file "/tmp/admin.conf"
 ```
-sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /etc/kubernetes/admin.conf
+sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /tmp/admin.conf
 ```
 
 - Go to Worker Node, create hidden directory "$HOME/.kube"
@@ -508,9 +508,9 @@ sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /etc/kubernetes/admin.conf
 mkdir -p $HOME/.kube
 ```
 
-- Go to Worker Node, copy file "/etc/kubernetes/admin.conf" into file "$HOME/.kube/config"
+- Go to Worker Node, copy file "/tmp/admin.conf" into file "$HOME/.kube/config"
 ```
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo cp -i /tmp/admin.conf $HOME/.kube/config
 ```
 
 - Go to Worker Node, change file "$HOME/.kube/config" ownership to root user and group
@@ -521,12 +521,12 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ### Step 7: Assign role to Worker Node
 
-- Go to Master Node / Control Plane, verify Worker Node is up
+- Verify Worker Node is up
 ```
 kubectl get nodes
 ```
 
-- Go to Master Node / Control Plane, Assign role to Worker Node
+- Assign role to Worker Node
 ```
 kubectl label node <WORKER_NODE_NAME> node-role.kubernetes.io/worker=worker
 ```
