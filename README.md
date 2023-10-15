@@ -392,7 +392,7 @@ deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stab
 EOF
 ```
 
-- Download public-private-key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download public-key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -404,7 +404,7 @@ deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stabl
 EOF
 ```
 
-- Download public-private-key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download public-key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -455,7 +455,7 @@ PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.famil
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download public-private-key "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Download public-key "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
