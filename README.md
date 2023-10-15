@@ -264,27 +264,32 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ### Step 7: [Option 1] Install CNI Calico
 
-- Create Kubernetes resource "kind: CustomResourceDefinition" for Calico CNI
+- Create Kubernetes resource "kind: Namespace" / "kind: CustomResourceDefinition" for CNI Calico
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 ```
 
-- Create Kubernetes resource "kind: Installation" for Calico CNI
+- Create Kubernetes resource "kind: Installation" for CNI Calico
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
 ```
 
-- Check Calico pods is running
+- Verify Calico pods is running
 ```
-kubectl get pod -n kube-system
+kubectl get pods --all-namespaces
 ```
 
 
 ### Step 7: [Option 2] Install CNI Flannel
 
-- To be Updated
+- Create Kubernetes resource "kind: Namespace" / "kind: ClusterRole" / "kind: ClusterRoleBinding" / "kind: ServiceAccount" / "kind: ConfigMap" / "kind: DaemonSet" for CNI Flannel
+```
+kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 ```
 
+- Verify Flannel pods is running
+```
+kubectl get pods --all-namespaces
 ```
 
 
