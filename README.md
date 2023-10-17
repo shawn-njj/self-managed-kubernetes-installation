@@ -16,7 +16,7 @@
 ## MASTER NODE / CONTROL PLANE
 IMPORTANT: Ensure inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
-### Step 1: Update
+### Step 1: [Option 1] Update on Ubuntu
 
 - Pull packages
 ```
@@ -34,6 +34,13 @@ sudo reboot
 ```
 
 
+### Step 1: [Option 2] Update on RHEL/CentOS
+- To be updated
+```
+
+```
+
+
 ### Step 2: Disable swap with persists after reboot
 
 - Turn off swap
@@ -47,7 +54,7 @@ sudo swapoff -a
 ```
 
 
-### Step 3: [Option 1] Install container runtime cri-o
+### Step 3: [Option 1] Install container runtime cri-o on Ubuntu
 
 - Set variable "OS" to be referenced as $OS later
 ```
@@ -136,19 +143,30 @@ systemctl status -l crio
 ```
 
 
-### Step 3: [Option 2] Install container runtime containerd
+### Step 3: [Option 2] Install container runtime containerd on Ubuntu
+
 - To be updated
 ```
 
 ```
 
-### Step 3: [Option 3] Install container runtime cri-dockerd
+### Step 3: [Option 3] Install container runtime cri-o on RHEL/CentOS
+
 - To be updated
 ```
 
 ```
 
-### Step 4: Install kubeadm and kubelet and kubectl
+
+### Step 3: [Option 4] Install container runtime containerd on RHEL/CentOS
+
+- To be updated
+```
+
+```
+
+
+### Step 4: [Option 1] Install kubeadm and kubelet and kubectl on Ubuntu
 
 - Set variable "KUBERNETES_LONG_VERSION" to be referenced as $KUBERNETES_LONG_VERSION later
 ```
@@ -185,6 +203,14 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERS
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
 EOF
+```
+
+
+### Step 4: [Option 2] Install kubeadm and kubelet and kubectl on RHEL/CentOS
+
+- To be updated
+```
+
 ```
 
 
@@ -310,7 +336,7 @@ kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=true
 ## WORKER NODE
 IMPORTANT: Ensure inbound TCP ports (10250, 30000-32767) are open
 
-### Step 1: Update
+### Step 1: [Option 1] Update on Ubuntu
 
 - Pull packages
 ```
@@ -328,6 +354,14 @@ sudo reboot
 ```
 
 
+### Step 1: [Option 2] Update on RHEL/CentOS
+
+- To be updated
+```
+
+```
+
+
 ### Step 2: Disable swap with persists after reboot
 
 - Turn off swap
@@ -341,7 +375,7 @@ sudo swapoff -a
 ```
 
 
-### Step 3: [Option 1] Install container runtime cri-o
+### Step 3: [Option 1] Install container runtime cri-o on Ubuntu
 
 - Set variable "OS" to be referenced as $OS later
 ```
@@ -430,15 +464,31 @@ systemctl status -l crio
 ```
 
 
-### Step 3: [Option 2] Install container runtime containerd
+### Step 3: [Option 2] Install container runtime containerd on Ubuntu
+
 - To be updated
+```
+
+```
 
 
-### Step 3: [Option 3] Install container runtime cri-dockerd
+### Step 3: [Option 3] Install container runtime cri-o on RHEL/CentOS
+
 - To be updated
+```
+
+```
 
 
-### Step 4: Install kubeadm and kubelet and kubectl
+### Step 3: [Option 4] Install container runtime containerd on RHEL/CentOS
+
+- To be updated
+```
+
+```
+
+
+### Step 4: [Option 1] Install kubeadm and kubelet and kubectl on Ubuntu
 
 - Set variable "KUBERNETES_LONG_VERSION" to be referenced as $KUBERNETES_LONG_VERSION later
 ```
@@ -475,6 +525,14 @@ sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERS
 cat <<EOF | sudo tee /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--node-ip=$PRIVATE_IP
 EOF
+```
+
+
+### Step 4: [Option 2] Install kubeadm and kubelet and kubectl on RHEL/CentOS
+
+- To be updated
+```
+
 ```
 
 
