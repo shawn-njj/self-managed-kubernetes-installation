@@ -1,4 +1,4 @@
-# Kubernetes Self-Managed Cluster Installation
+# Self-Managed Kubernetes Installation
 
 
 
