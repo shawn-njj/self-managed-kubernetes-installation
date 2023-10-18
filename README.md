@@ -607,12 +607,12 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ### Step 7: Assign role to Worker-Node
 
-- Verify Worker Node is up
+- Verify Worker-Node is up
 ```
 kubectl get nodes
 ```
 
-- Assign role to Worker Node
+- Assign role to Worker-Node
 ```
 kubectl label node <WORKER_NODE_NAME> node-role.kubernetes.io/worker=worker
 ```
