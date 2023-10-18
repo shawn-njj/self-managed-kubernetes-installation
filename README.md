@@ -14,7 +14,8 @@
 
 
 ## MASTER-NODE/CONTROL-PLANE
-IMPORTANT: Ensure inbound TCP ports (6443, 2379-2380, 10250-10252) are open
+> [!IMPORTANT]
+> Ensure inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
 ### Step 1: [Option 1] Update on Ubuntu
 
@@ -345,7 +346,8 @@ kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=true
 
 
 ## WORKER-NODE
-IMPORTANT: Ensure inbound TCP ports (10250, 30000-32767) are open
+> [!IMPORTANT]
+> Ensure inbound TCP ports (10250, 30000-32767) are open
 
 ### Step 1: [Option 1] Update on Ubuntu
 
@@ -560,13 +562,13 @@ EOF
 ### Step 5: Register Worker-Node to Master-Node/Control-Plane
 
 - Generate token for Worker-Node to join
+> [!WARNING]
 > At Master-Node/Control-Plane:
 ```
 kubeadm token create --print-join-command
 ```
 
 - Join Master-Node/Control-Plane using token
-> At Worker-Node:
 ```
 sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cert-hash sha256:<TOKEN_HASH>
 ```
@@ -575,31 +577,28 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 ### Step 6: Configure kubectl in Worker-Node to have access to the cluster
 
 - Run python3-HTTP-server on directory "/etc/kubernetes"
+> [!WARNING]
 > At Master-Node/Control-Plane:
 ```
 cd /etc/kubernetes && sudo python3 -m http.server 9001
 ```
 
 - Download file "http://<MASTER_NODE_IP>:9001/admin.conf" into file "/tmp/admin.conf"
-> At Worker-Node:
 ```
 sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /tmp/admin.conf
 ```
 
 - Create directory "$HOME/.kube"
-> At Worker-Node:
 ```
 mkdir -p $HOME/.kube
 ```
 
 - Copy file "/tmp/admin.conf" into file "$HOME/.kube/config"
-> At Worker-Node:
 ```
 sudo cp -i /tmp/admin.conf $HOME/.kube/config
 ```
 
 - Change file "$HOME/.kube/config" ownership "$(id -u):$(id -g)"
-> At Worker-Node:
 ```
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
