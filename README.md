@@ -54,7 +54,7 @@ sudo swapoff -a
 ```
 
 
-### Step 3: [Option 1] Install container runtime cri-o on Ubuntu
+### Step 3: [Option 1] Set up container runtime cri-o on Ubuntu
 
 - Set variable "OS" to be referenced as $OS later
 ```
@@ -122,7 +122,7 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Install "cri-o" and "cri-o-runc"
+- Install "cri-o" + "cri-o-runc"
 ```
 sudo apt-get update -y && sudo apt-get install cri-o cri-o-runc -y
 ```
@@ -143,22 +143,14 @@ systemctl status -l crio
 ```
 
 
-### Step 3: [Option 2] Install container runtime containerd on Ubuntu
+### Step 3: [Option 2] Set up container runtime containerd on Ubuntu
 
 - To be updated
 ```
 
 ```
 
-### Step 3: [Option 3] Install container runtime cri-o on RHEL/CentOS
-
-- To be updated
-```
-
-```
-
-
-### Step 3: [Option 4] Install container runtime containerd on RHEL/CentOS
+### Step 3: [Option 3] Set up container runtime cri-o on RHEL/CentOS
 
 - To be updated
 ```
@@ -166,7 +158,15 @@ systemctl status -l crio
 ```
 
 
-### Step 4: [Option 1] Install kubeadm and kubelet and kubectl on Ubuntu
+### Step 3: [Option 4] Set up container runtime containerd on RHEL/CentOS
+
+- To be updated
+```
+
+```
+
+
+### Step 4: [Option 1] Set up kubeadm and kubelet and kubectl on Ubuntu
 
 - Set variable "KUBERNETES_LONG_VERSION" to be referenced as $KUBERNETES_LONG_VERSION later
 ```
@@ -178,7 +178,7 @@ KUBERNETES_LONG_VERSION="1.28.1-00"
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Install "apt-transport-https" and "ca-certificates" and "curl" and "jq"
+- Install "apt-transport-https" + "ca-certificates" + "curl" + "jq"
 ```
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
@@ -193,7 +193,7 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-- Install kubeadm and kubelet and kubectl
+- Install "kubeadm" + "kubelet" + "kubectl"
 ```
 sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERSION" kubectl="$KUBERNETES_LONG_VERSION" kubeadm="$KUBERNETES_LONG_VERSION"
 ```
@@ -206,7 +206,7 @@ EOF
 ```
 
 
-### Step 4: [Option 2] Install kubeadm and kubelet and kubectl on RHEL/CentOS
+### Step 4: [Option 2] Set up kubeadm and kubelet and kubectl on RHEL/CentOS
 
 - To be updated
 ```
@@ -288,7 +288,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 
-### Step 7: [Option 1] Install CNI Calico
+### Step 7: [Option 1] Set up CNI Calico
 
 - Create Kubernetes resource "kind: Namespace" + "kind: CustomResourceDefinition" for CNI Calico
 ```
@@ -306,7 +306,7 @@ kubectl get pods --all-namespaces
 ```
 
 
-### Step 7: [Option 2] Install CNI Flannel
+### Step 7: [Option 2] Set up CNI Flannel
 
 - Create Kubernetes resource "kind: Namespace" + "kind: ClusterRole" + "kind: ClusterRoleBinding" + "kind: ServiceAccount" + "kind: ConfigMap" + "kind: DaemonSet" for CNI Flannel
 ```
@@ -375,7 +375,7 @@ sudo swapoff -a
 ```
 
 
-### Step 3: [Option 1] Install container runtime cri-o on Ubuntu
+### Step 3: [Option 1] Set up container runtime cri-o on Ubuntu
 
 - Set variable "OS" to be referenced as $OS later
 ```
@@ -443,7 +443,7 @@ EOF
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
 
-- Install "cri-o" and "cri-o-runc"
+- Install "cri-o" + "cri-o-runc"
 ```
 sudo apt-get update -y && sudo apt-get install cri-o cri-o-runc -y
 ```
@@ -464,7 +464,7 @@ systemctl status -l crio
 ```
 
 
-### Step 3: [Option 2] Install container runtime containerd on Ubuntu
+### Step 3: [Option 2] Set up container runtime containerd on Ubuntu
 
 - To be updated
 ```
@@ -472,7 +472,7 @@ systemctl status -l crio
 ```
 
 
-### Step 3: [Option 3] Install container runtime cri-o on RHEL/CentOS
+### Step 3: [Option 3] Set up container runtime cri-o on RHEL/CentOS
 
 - To be updated
 ```
@@ -480,7 +480,7 @@ systemctl status -l crio
 ```
 
 
-### Step 3: [Option 4] Install container runtime containerd on RHEL/CentOS
+### Step 3: [Option 4] Set up container runtime containerd on RHEL/CentOS
 
 - To be updated
 ```
@@ -488,7 +488,7 @@ systemctl status -l crio
 ```
 
 
-### Step 4: [Option 1] Install kubeadm and kubelet and kubectl on Ubuntu
+### Step 4: [Option 1] Set up kubeadm and kubelet and kubectl on Ubuntu
 
 - Set variable "KUBERNETES_LONG_VERSION" to be referenced as $KUBERNETES_LONG_VERSION later
 ```
@@ -500,7 +500,7 @@ KUBERNETES_LONG_VERSION="1.28.1-00"
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
 
-- Install "apt-transport-https" and "ca-certificates" and "curl" and "jq"
+- Install "apt-transport-https" + "ca-certificates" + "curl" + "jq"
 ```
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
@@ -515,7 +515,7 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-- Install kubeadm and kubelet and kubectl
+- Install "kubeadm" + "kubelet" + "kubectl"
 ```
 sudo apt-get update -y && sudo apt-get install -y kubelet="$KUBERNETES_LONG_VERSION" kubectl="$KUBERNETES_LONG_VERSION" kubeadm="$KUBERNETES_LONG_VERSION"
 ```
@@ -528,7 +528,7 @@ EOF
 ```
 
 
-### Step 4: [Option 2] Install kubeadm and kubelet and kubectl on RHEL/CentOS
+### Step 4: [Option 2] Set up kubeadm and kubelet and kubectl on RHEL/CentOS
 
 - To be updated
 ```
