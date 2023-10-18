@@ -13,7 +13,7 @@
 
 
 
-## MASTER NODE / CONTROL PLANE
+## MASTER-NODE/CONTROL-PLANE
 IMPORTANT: Ensure inbound TCP ports (6443, 2379-2380, 10250-10252) are open
 
 ### Step 1: [Option 1] Update on Ubuntu
@@ -225,7 +225,7 @@ EOF
 ```
 
 
-### Step 5: [Option 1] Set up Master Node / Control Plane using Public IP address
+### Step 5: [Option 1] Set up Master-Node/Control-Plane using Public IP address
 
 - Set variable "NODENAME" referenced "$NODENAME"
 ```
@@ -253,7 +253,7 @@ sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-
 ```
 
 
-### Step 5: [Option 2] Set up Master Node / Control Plane using Private IP address
+### Step 5: [Option 2] Set up Master-Node/Control-Plane using Private IP address
 
 - Set variable "NODENAME" referenced "$NODENAME"
 ```
@@ -281,7 +281,7 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 ```
 
 
-### Step 6: Configure kubectl in Master Node / Control Plane to have access to the cluster
+### Step 6: Configure kubectl in Master-Node/Control-Plane to have access to the cluster
 
 - Create directory "$HOME/.kube"
 ```
@@ -330,7 +330,7 @@ kubectl get pods --all-namespaces
 ```
 
 
-### Step 8: Assign role to Master Node / Control Plane
+### Step 8: Assign role to Master-Node/Control-Plane
 
 - Verify Master Node / Control Plane is up
 ```
@@ -344,7 +344,7 @@ kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=true
 
 
 
-## WORKER NODE
+## WORKER-NODE
 IMPORTANT: Ensure inbound TCP ports (10250, 30000-32767) are open
 
 ### Step 1: [Option 1] Update on Ubuntu
@@ -557,20 +557,22 @@ EOF
 ```
 
 
-### Step 5: Register Worker Node to Master Node / Control Plane
+### Step 5: Register Worker-Node to Master Node / Control Plane
 
-- Go to Master Node / Control Plane, generate token for Worker Node to join
+- Generate token for Worker Node to join
+> At Master-Node/Control-Plane
 ```
 kubeadm token create --print-join-command
 ```
 
 - Go to Worker Node, join Master Node / Control Plane using token
+> At Master-Node/Control-Plane
 ```
 sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cert-hash sha256:<TOKEN_HASH>
 ```
 
 
-### Step 6: Configure kubectl in Worker Node to have access to the cluster
+### Step 6: Configure kubectl in Worker-Node to have access to the cluster
 
 - Go to Master Node / Control Plane, start python3 HTTP file transfer server on directory "/etc/kubernetes"
 Master Node / Control Plane
@@ -599,7 +601,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 
-### Step 7: Assign role to Worker Node
+### Step 7: Assign role to Worker-Node
 
 - Verify Worker Node is up
 ```
