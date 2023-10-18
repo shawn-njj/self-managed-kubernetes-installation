@@ -242,12 +242,12 @@ POD_CIDR="192.168.0.0/16"
 MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
 ```
 
-- Pull 7 container images comprising kube-api-server / kube-controller-manager / kube-scheduler / kube-proxy / pause / etcd / coredns
+- Pull 7 container-image(s) "kube-api-server" + "kube-controller-manager" + "kube-scheduler" + "kube-proxy" + "pause" + "etcd" + "coredns"
 ```
 sudo kubeadm config images pull
 ```
 
-- Run Master Node / Control Plane with Public IP and Pod CIDR range and Node name
+- Run Master Node / Control Plane
 ```
 sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-extra-sans="$MASTER_PUBLIC_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
@@ -270,12 +270,12 @@ POD_CIDR="192.168.0.0/16"
 MASTER_PRIVATE_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)
 ```
 
-- Pull 7 container images comprising kube-api-server / kube-controller-manager / kube-scheduler / kube-proxy / pause / etcd / coredns
+- Pull 7 container-image(s) "kube-api-server" + "kube-controller-manager" + "kube-scheduler" + "kube-proxy" + "pause" + "etcd" + "coredns"
 ```
 sudo kubeadm config images pull
 ```
 
-- Run Master Node / Control Plane with Private IP and Pod CIDR range and Node name
+- Run Master Node / Control Plane
 ```
 sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
@@ -577,7 +577,7 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 cd /etc/kubernetes && sudo python3 -m http.server 9001
 ```
 
-- Go to Worker Node, download file "admin.conf" from Master Node / Control Plane into file "/tmp/admin.conf"
+- Go to Worker Node, download file "http://<MASTER_NODE_IP>:9001/admin.conf" into file "/tmp/admin.conf"
 ```
 sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /tmp/admin.conf
 ```
