@@ -67,12 +67,12 @@ sudo swapoff -a
 
 ### Step 3: [Option 1] Set up container runtime cri-o on Ubuntu
 
-- Set variable "OS" to be referenced as $OS later
+- Set variable "OS" referenced "$OS"
 ```
 OS="xUbuntu_22.04"
 ```
 
-- Set variable "KUBERNETES_SHORT_VERSION" to be referenced as $KUBERNETES_SHORT_VERSION later
+- Set variable "KUBERNETES_SHORT_VERSION" referenced "$KUBERNETES_SHORT_VERSION"
 ```
 KUBERNETES_SHORT_VERSION="1.28"
 ```
@@ -116,7 +116,7 @@ deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stab
 EOF
 ```
 
-- Download public-key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download file "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -128,7 +128,7 @@ deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stabl
 EOF
 ```
 
-- Download public-key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download file "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -179,12 +179,12 @@ systemctl status -l crio
 
 ### Step 4: [Option 1] Set up kubeadm and kubelet and kubectl on Ubuntu
 
-- Set variable "KUBERNETES_LONG_VERSION" to be referenced as $KUBERNETES_LONG_VERSION later
+- Set variable "KUBERNETES_LONG_VERSION" referenced "$KUBERNETES_LONG_VERSION"
 ```
 KUBERNETES_LONG_VERSION="1.28.1-00"
 ```
 
-- Set variable "PRIVATE_IP" to be referenced as $PRIVATE_IP later
+- Set variable "PRIVATE_IP" referenced "$PRIVATE_IP"
 ```
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
@@ -194,7 +194,7 @@ PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.famil
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download public-key "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Download file "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
@@ -227,17 +227,17 @@ EOF
 
 ### Step 5: [Option 1] Set up Master Node / Control Plane using Public IP address
 
-- Set variable "NODENAME" to be referenced as $NODENAME later
+- Set variable "NODENAME" referenced "$NODENAME"
 ```
 NODENAME=$(hostname -s)
 ```
 
-- Set variable "POD_CIDR" to be referenced as $POD_CIDR later
+- Set variable "POD_CIDR" referenced "$POD_CIDR"
 ```
 POD_CIDR="192.168.0.0/16"
 ```
 
-- Set variable "MASTER_PUBLIC_IP" to be referenced as $MASTER_PUBLIC_IP later
+- Set variable "MASTER_PUBLIC_IP" referenced "$MASTER_PUBLIC_IP"
 ```
 MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
 ```
@@ -255,17 +255,17 @@ sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-
 
 ### Step 5: [Option 2] Set up Master Node / Control Plane using Private IP address
 
-- Set variable "NODENAME" to be referenced as $NODENAME later
+- Set variable "NODENAME" referenced "$NODENAME"
 ```
 NODENAME=$(hostname -s)
 ```
 
-- Set variable "POD_CIDR" to be referenced as $POD_CIDR later
+- Set variable "POD_CIDR" referenced "$POD_CIDR"
 ```
 POD_CIDR="192.168.0.0/16"
 ```
 
-- Set variable "MASTER_PRIVATE_IP" to be referenced as $MASTER_PRIVATE_IP later
+- Set variable "MASTER_PUBLIC_IP" referenced "$MASTER_PUBLIC_IP"
 ```
 MASTER_PRIVATE_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)
 ```
@@ -283,7 +283,7 @@ sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver
 
 ### Step 6: Configure kubectl in Master Node / Control Plane to have access to the cluster
 
-- Create hidden directory "$HOME/.kube"
+- Create directory "$HOME/.kube"
 ```
 mkdir -p $HOME/.kube
 ```
@@ -301,17 +301,17 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ### Step 7: [Option 1] Set up CNI Calico
 
-- Create Kubernetes resource "kind: Namespace" + "kind: CustomResourceDefinition" for CNI Calico
+- Create kubernetes-resource "kind: Namespace" + "kind: CustomResourceDefinition"
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 ```
 
-- Create Kubernetes resource "kind: Installation" for CNI Calico
+- Create kubernetes-resource "kind: Installation"
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
 ```
 
-- Verify Calico pods is running
+- Verify pods "calico" is running
 ```
 kubectl get pods --all-namespaces
 ```
@@ -319,12 +319,12 @@ kubectl get pods --all-namespaces
 
 ### Step 7: [Option 2] Set up CNI Flannel
 
-- Create Kubernetes resource "kind: Namespace" + "kind: ClusterRole" + "kind: ClusterRoleBinding" + "kind: ServiceAccount" + "kind: ConfigMap" + "kind: DaemonSet" for CNI Flannel
+- Create kubernetes-resource "kind: Namespace" + "kind: ClusterRole" + "kind: ClusterRoleBinding" + "kind: ServiceAccount" + "kind: ConfigMap" + "kind: DaemonSet"
 ```
 kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 ```
 
-- Verify Flannel pods is running
+- Verify pods "flannel" is running
 ```
 kubectl get pods --all-namespaces
 ```
@@ -398,12 +398,12 @@ sudo swapoff -a
 
 ### Step 3: [Option 1] Set up container runtime cri-o on Ubuntu
 
-- Set variable "OS" to be referenced as $OS later
+- Set variable "OS" referenced "$OS"
 ```
 OS="xUbuntu_22.04"
 ```
 
-- Set variable "KUBERNETES_SHORT_VERSION" to be referenced as $KUBERNETES_SHORT_VERSION later
+- Set variable "KUBERNETES_SHORT_VERSION" referenced "$KUBERNETES_SHORT_VERSION"
 ```
 KUBERNETES_SHORT_VERSION="1.28"
 ```
@@ -447,7 +447,7 @@ deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stab
 EOF
 ```
 
-- Download public-key "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download file "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -459,7 +459,7 @@ deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stabl
 EOF
 ```
 
-- Download public-key "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
+- Download file "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key" into file "/etc/apt/trusted.gpg.d/libcontainers.gpg"
 ```
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$KUBERNETES_SHORT_VERSION/$OS/Release.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/libcontainers.gpg add -
 ```
@@ -511,12 +511,12 @@ systemctl status -l crio
 
 ### Step 4: [Option 1] Set up kubeadm and kubelet and kubectl on Ubuntu
 
-- Set variable "KUBERNETES_LONG_VERSION" to be referenced as $KUBERNETES_LONG_VERSION later
+- Set variable "KUBERNETES_LONG_VERSION" referenced "$KUBERNETES_LONG_VERSION"
 ```
 KUBERNETES_LONG_VERSION="1.28.1-00"
 ```
 
-- Set variable "PRIVATE_IP" to be referenced as $PRIVATE_IP later
+- Set variable "PRIVATE_IP" referenced "$PRIVATE_IP"
 ```
 PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 ```
@@ -526,7 +526,7 @@ PRIVATE_IP="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.famil
 sudo apt-get update -y && sudo apt-get install apt-transport-https ca-certificates curl jq -y
 ```
 
-- Download public-key "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+- Download file "https://dl.k8s.io/apt/doc/apt-key.gpg" into file "/usr/share/keyrings/kubernetes-archive-keyring.gpg"
 ```
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
 ```
@@ -573,6 +573,7 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 ### Step 6: Configure kubectl in Worker Node to have access to the cluster
 
 - Go to Master Node / Control Plane, start python3 HTTP file transfer server on directory "/etc/kubernetes"
+Master Node / Control Plane
 ```
 cd /etc/kubernetes && sudo python3 -m http.server 9001
 ```
