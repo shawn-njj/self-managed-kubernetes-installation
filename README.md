@@ -293,7 +293,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
-- Change file "$HOME/.kube/config" ownership to root user and group
+- Change file "$HOME/.kube/config" ownership to owner "<CURRENT_USER>" + group "<CURRENT_USER>"
 ```
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
@@ -592,7 +592,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /tmp/admin.conf $HOME/.kube/config
 ```
 
-- Go to Worker Node, change file "$HOME/.kube/config" ownership to root user and group
+- Go to Worker Node, change file "$HOME/.kube/config" ownership to owner "<CURRENT_USER>" + group "<CURRENT_USER>"
 ```
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
