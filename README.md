@@ -247,7 +247,7 @@ MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
 sudo kubeadm config images pull
 ```
 
-- Run Master Node / Control Plane
+- Run Master-Node/Control-Plane
 ```
 sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-extra-sans="$MASTER_PUBLIC_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
@@ -275,7 +275,7 @@ MASTER_PRIVATE_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)
 sudo kubeadm config images pull
 ```
 
-- Run Master Node / Control Plane
+- Run Master-Node/Control-Plane
 ```
 sudo kubeadm init --apiserver-advertise-address="$MASTER_PRIVATE_IP" --apiserver-cert-extra-sans="$MASTER_PRIVATE_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap
 ```
@@ -332,12 +332,12 @@ kubectl get pods --all-namespaces
 
 ### Step 8: Assign role to Master-Node/Control-Plane
 
-- Verify Master Node / Control Plane is up
+- Verify Master-Node/Control-Plane is up
 ```
 kubectl get nodes
 ```
 
-- Assign role to Master Node / Control Plane
+- Assign role to Master-Node/Control-Plane
 ```
 kubectl label node <MASTER_NODE_NAME> node-role.kubernetes.io/master=true
 ```
@@ -557,16 +557,16 @@ EOF
 ```
 
 
-### Step 5: Register Worker-Node to Master Node / Control Plane
+### Step 5: Register Worker-Node to Master-Node/Control-Plane
 
-- Generate token for Worker Node to join
-> At Master-Node/Control-Plane
+- Generate token for Worker-Node to join
+> At Master-Node/Control-Plane:
 ```
 kubeadm token create --print-join-command
 ```
 
-- Go to Worker Node, join Master Node / Control Plane using token
-> At Master-Node/Control-Plane
+- Join Master-Node/Control-Plane using token
+> At Worker-Node:
 ```
 sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cert-hash sha256:<TOKEN_HASH>
 ```
@@ -574,28 +574,32 @@ sudo kubeadm join <MASTER_NODE_IP>:6443 --token <TOKEN> --discovery-token-ca-cer
 
 ### Step 6: Configure kubectl in Worker-Node to have access to the cluster
 
-- Go to Master Node / Control Plane, start python3 HTTP file transfer server on directory "/etc/kubernetes"
-Master Node / Control Plane
+- Run python3-HTTP-server on directory "/etc/kubernetes"
+> At Master-Node/Control-Plane:
 ```
 cd /etc/kubernetes && sudo python3 -m http.server 9001
 ```
 
-- Go to Worker Node, download file "http://<MASTER_NODE_IP>:9001/admin.conf" into file "/tmp/admin.conf"
+- Download file "http://<MASTER_NODE_IP>:9001/admin.conf" into file "/tmp/admin.conf"
+> At Worker-Node:
 ```
 sudo curl http://<MASTER_NODE_IP>:9001/admin.conf > /tmp/admin.conf
 ```
 
-- Go to Worker Node, create hidden directory "$HOME/.kube"
+- Create directory "$HOME/.kube"
+> At Worker-Node:
 ```
 mkdir -p $HOME/.kube
 ```
 
-- Go to Worker Node, copy file "/tmp/admin.conf" into file "$HOME/.kube/config"
+- Copy file "/tmp/admin.conf" into file "$HOME/.kube/config"
+> At Worker-Node:
 ```
 sudo cp -i /tmp/admin.conf $HOME/.kube/config
 ```
 
-- Go to Worker Node, change file "$HOME/.kube/config" ownership "$(id -u):$(id -g)"
+- Change file "$HOME/.kube/config" ownership "$(id -u):$(id -g)"
+> At Worker-Node:
 ```
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
