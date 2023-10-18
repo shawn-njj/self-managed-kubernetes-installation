@@ -35,9 +35,20 @@ sudo reboot
 
 
 ### Step 1: [Option 2] Update on RHEL/CentOS
-- To be updated
+
+- Pull packages
+```
+sudo dnf makecache -y
 ```
 
+- Update packages
+```
+sudo dnf update -y
+```
+
+- Restart
+```
+sudo reboot
 ```
 
 
@@ -356,9 +367,19 @@ sudo reboot
 
 ### Step 1: [Option 2] Update on RHEL/CentOS
 
-- To be updated
+- Pull packages
+```
+sudo dnf makecache -y
 ```
 
+- Update packages
+```
+sudo dnf update -y
+```
+
+- Restart
+```
+sudo reboot
 ```
 
 
